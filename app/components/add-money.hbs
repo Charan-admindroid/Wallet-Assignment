@@ -1,0 +1,12 @@
+<div class="add">
+    <h1 class="add-h">Add Money to Wallet</h1>
+    <div class="add-div-1">
+        <h2>Add Amount</h2>
+        <h3>Available Amount: &#8377;<span class="add-div-1-s">{{this.money}}.00</span></h3>
+        <form {{on "submit" this.addAmount}}>
+            <input type="number" placeholder="Enter Amount" value={{this.adding}} {{on "input" this.updateAmount}} class="add-div-1-input" required/>
+            <button type="submit" class="submit">Add Amount</button>
+        </form>
+        <button {{on "click" this.back}} class="back">Back</button>
+    </div>
+</div>
