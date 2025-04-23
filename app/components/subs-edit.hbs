@@ -1,0 +1,78 @@
+<div class="subs-add-div">
+    <h2>Edit Subscription Details</h2>
+    <form {{on "submit" this.submit}} class="form">
+        <div class="form-div-1 form-div">
+            <label for="name">
+                Name:
+            </label>
+            <input placeholder="Enter Name" type="text" id="name" value={{this.editSub.name}} {{on "input" (fn this.updateSubs "name")}} required/>
+        </div>
+        <div class="form-div-2 form-div">
+            <label>Subscription Plan:</label>
+            <PowerSelect
+                @options={{this.plans}}
+                @selected={{this.editSub.plan}}
+                @onChange={{this.updatePlan}}
+                @placeholder="Select Plan"
+                @aria-required="true"
+                as |plan|
+
+            >
+                {{plan}}
+            </PowerSelect>
+        </div>
+
+        <div class="form-div-2 form-div">
+            <label>Billing Cycle:</label>
+            <PowerSelect
+                @options={{this.billing}}
+                @selected={{this.editSub.billing}}
+                @onChange={{this.updateBilling}}
+                @placeholder="Select Billing Cycle"
+                @aria-required="true"
+                as |bill|
+            >
+                {{bill}}
+            </PowerSelect>
+        </div>
+        <div class="form-div-1 form-div">
+            <label for="amount">
+                Amount:
+            </label>
+            <input placeholder="Enter Amount" type="number" value={{this.editSub.amount}} {{on "input" (fn this.updateSubs "amount")}} id="amount" required/>
+        </div>
+        <div class="form-div-2 form-div">
+            <label>
+                Category:
+            </label>
+            <PowerSelect
+                @options={{this.category}}
+                @selected={{this.editSub.category}}
+                @onChange={{this.updateCategory}}
+                @placeholder="Select Category"
+                @required={{true}}
+                as |category|
+            >
+                {{category}}
+            </PowerSelect>
+        </div>
+        <div class="form-div-2 form-div">
+            <label>
+                Payment Method:
+            </label>
+            <PowerSelect
+                @options={{this.payment}}
+                @selected={{this.editSub.payment}}
+                @onChange={{this.updatePayment}}
+                @placeholder="Select Payment Method"
+                as |payment|
+            >
+                {{payment}}
+            </PowerSelect>
+        </div>
+        <button type="submit" class="submit">Save Changes</button>
+        <button type="button" class="submit cancel" {{on 'click' this.cancel}}>Cancel</button>
+    </form>
+</div>
+
+ {{!-- [Name, Subscription Plan (Standard, Pro, Pro+), Billing cycle (Weekly,  Monthly, Yearly), Amount, Category (Entertainment, Music, Amazon Prime, Jio Star), payment method (UPI, Debit Card, Net Banking, Wallet)] --}}

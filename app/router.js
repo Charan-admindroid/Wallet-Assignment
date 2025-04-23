@@ -8,4 +8,7 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('wallet-money');
+  this.route('subs-add');
+  this.route('subs-edit', { path: '/subs/:id/edit' });
+  this.route('subscriptions', function () {});
 });
