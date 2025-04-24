@@ -81,6 +81,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "ember-cli-flash": "^6.0.0"
+    "ember-cli-flash": "^6.0.0",
+    "ember-keyboard": "^9.0.1"
   }
 }

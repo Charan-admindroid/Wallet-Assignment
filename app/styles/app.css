@@ -4,31 +4,54 @@ body{
     padding:0;
     margin:0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #FFFDF2;
+    background-color: #023256;
+    /* background-image: url('https://img.freepik.com/free-vector/bank-card-coin-withdrawal-money-money-payment-symbol-vector-illustration_587448-912.jpg?semt=ais_hybrid&w=740');
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+    /* background-size: 100% 100%; */
+    /* background-size: cover; */
 }
 
 
 .wallet-subs{
     padding:20px;
-
 }
 
-.wallet{
-    width:21rem;
-    height:10rem;
 
+.bg-img{
+    height: 100vh;
+    z-index: -999;
+    width: 100vw;
+}
+
+.heading{
+    color: rgb(228, 222, 222);
+}
+
+
+
+.wallet{
+    /* width:21rem; */
     /* border: 1px solid black; */
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 0 6px rgb(0 0 0 / 49.1%);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 49.1%);
+    transition: box-shadow 0.5s;
+    background-image: url("https://t4.ftcdn.net/jpg/04/88/06/55/360_F_488065538_8c8VgyQjc5EroxagDRDAFKEEjSukjUge.jpg");
+    width: 98%;
+    height:25rem;
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:50% 50%;
 }
 
 .wallet:hover{
-    box-shadow: 0 2px 8px rgb(0 0 0 / 69.2%);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 69.2%);
 }
 
-.wallet-b{
+/* .wallet-b{
     padding:8px 10px;
     border-radius: 5px;
     border:0.5px solid gray;
@@ -36,66 +59,184 @@ body{
     cursor: pointer;
     font-size: 18px;
     font-weight: 700;
-}
+} */
 
 .wallet-b:hover{
     background-color: rgb(0 0 0 / 89.5%);
     color: white;
 }
 
-.add h1{
+/* .add h1{
     text-align: center;
     margin-top:100px;
+} */
+
+
+.wallet-div{
+    width:32rem;
+    height:18rem;
+    margin:40px 10px 100px 20px;
+    background-color: #035f8d;
+    padding:18px 20px;
+    color:white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgb(27, 19, 19);
+    transition: box-shadow 0.5s;
 }
 
-.add-div-1{
-    width:30rem;
-    height:15rem;
-    border: 0.1px solid black;
-    box-shadow: 2px 0 6px rgb(0 0 0 / 57.5%);
-    position:relative;
-    left:50%;
-    transform: translate(-50%);
-    padding:15px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;;
-    flex-direction: column;
-    align-items: start;
+.wallet-div:hover{
+    box-shadow: 0 4px 10px rgb(27, 19, 19);;
+}
 
+.bal-h{
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-family:sans-serif;
+
+}
+
+.bal{
+    font-size:45px;
+    letter-spacing: 1.5px;
+    margin-left: 10px;
+}
+
+.wallet-btn-div{
+    display: flex;
+    gap: 30px;
+    margin:10px 20px;
+    flex-wrap: wrap;
+}
+
+.wallet-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color:black;
+    height: 85px;
+    width:85px;
+    text-align: center;
+    background-color:#b3d9ec;
+    border-radius: 15px;
+}
+
+.wallet-btn:hover{
+    background-color: #d1dfe6;
+    font-size:19px;
+    width: 83px;
+    height: 83px;
+}
+
+.wallet-btn a{
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.wallet-btn img{
+    height: 30px;
+    width: 30px;
+}
+
+.card-new{
+    height: 50px;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 20px;
+    background-color: #033d5c;
+    cursor: pointer;
+    border:1px solid white;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.card-new span{
+    margin-right:5px;
+}
+
+.card-new:hover{
+    background-color: #012436;
+}
+
+.request{
+    transform:rotate(180deg);
+}
+
+.add{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.add-div-1{
+    width:32rem;
+    height:16rem;
+    padding:20px;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.555);
+    margin-bottom: 10px;
+    transition: box-shadow 0.5s;
+    cursor: pointer;
+    background-color:#035f8d;
+    color: white;
 }
 
 .add-div-1:hover{
-    box-shadow: 0 2px 8px rgb(0 0 0 / 69.2%);
+    box-shadow: 0 6px 12px black;
+}
+
+.add-h{
+    margin-top: 100px;
+    color: white;
+    letter-spacing: 3px;
+    font-size: 40px;
 }
 
 .add-div-1 input{
-    padding:10px;
+    padding:15px;
     border-radius:8px;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     border: 0.5px solid black;
+    background-color: #b3d9ec;
+    overflow: hidden;
+}
+
+.add-div-1 form{
+    display: flex;
+    gap: 20px;
 }
 
 .add-div-1 .submit{
     padding: 10px;
-    background-color: transparent;
-    font-size: 18px;
-    font-weight: 700;
+    background-color:#b3d9ec;
+    font-size: 19px;
+    font-weight: 750;
     border: 0.5px solid black;
     border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.5s;
 }
 
-.add-div-1 button:hover{
-    background-color:black;
+.add-div-1 .submit:hover{
+    background-color:#023256;
     color: white;
 }
 
 .back{
     margin:20px 0 0 5px;
     letter-spacing: 1.5px;
-    padding:8px 15px;
+    padding:10px 15px;
     background-color:black;
     font-size: 18px;
     font-weight: 700;
@@ -103,6 +244,7 @@ body{
     border-radius: 6px;
     cursor: pointer;
     color: white;
+    margin-top: 40px;
 }
 
 .wallet-s .add-div-1-input{
@@ -111,15 +253,15 @@ body{
 }
 
 .line{
-    margin: 40px 0 20px;
+    margin: 40px 0 20px 20px;
     width:90%;
-    background-color: black;
+    background-color: rgb(179, 176, 176);
     height:0.1px ;
 }
 
 .subs-b{
     padding: 10px;
-    background-color: black;
+    background-color:rgb(55, 144, 179);
     border-radius: 8px;
     color: white;
     border: 0.5px solid white;
@@ -128,6 +270,15 @@ body{
     font-size: 18px;
     font-weight: 600;
     overflow: hidden;
+}
+
+.subs-heading{
+    color: white;
+    font-size: 45px;
+    margin: 20px 0px 20px 0px;
+    display: block;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 .form{
@@ -162,6 +313,10 @@ body{
     padding: 20px;
 }
 
+.subs-add-div h2{
+    color: white;
+}
+
 .ember-power-select-trigger{
     width: 90%;
     font-size: 18px;
@@ -192,34 +347,74 @@ body{
 
 .sub-card{
     width:19rem;
-    height:18rem;
-    box-shadow: 0 0 4px rgb(0 0 0 / 30.1%);
+    height:27rem;
+    max-width: 22rem;
+    max-height: 30rem;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 30.1%);
     padding:10px;
     cursor: pointer;
     border-radius: 15px;
     margin-left: 20px;
     overflow: hidden;
+    transition: box-shadow 0.5s;
+    background-color: #447da4;
+    color: white;
 }
 
 .sub-card:hover{
-    box-shadow: 0 2px 6px rgb(0 0 0 / 58%);
+    box-shadow: 0 8px 12px rgb(0 0 0 / 58%);
 }
 
-.sub-card a{
+/* .sub-card a{
     display: block;
-    font-size: 17px;
+    font-size: 20px;
+    font-weight: 650;
+    margin:10px 20px;
+    color:rgb(255, 255, 255);
+
+}    */
+
+.category-img{
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* a span{
+    font-size: 19px;
+    font-weight: 700;
+    color: white;
+} */
+
+.sub-name{
+    font-size: 30px;
+    font-weight: 800;
+    margin-left: 10px;
+    text-align: center;
+    color: black;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.card-a{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left:10px;
+    gap:10px;
+}
+
+.card-a a{
+    font-size: 19px;
     font-weight: 600;
-    margin:7px 20px;
+    color:white;
 }
 
 a span{
-    font-size: 19px;
-    font-weight: 700;
-    color: black;
-}
-
-.sub-card h3{
-    margin-left: 10px;
+    font-size:20px;
+    font-weight:700 ;
+    color: rgb(255, 191, 0);
 }
 
 .bill{
@@ -251,10 +446,28 @@ a span{
 
 .card-btns{
     display: flex;
-    gap:10px;
+    gap:20px;
     justify-content: start;
     align-items: center;
-    margin-top: 20px;
+    margin-top:20px;
+    margin-left: 15px;
+}
+
+
+.flash-message{
+    color: black;
+    background-color: rgb(253, 199, 3);
+    /* z-index:999; */
+    height:50px;
+    width:80%;
+    font-size: 25px;
+    font-weight:600;
+    text-align: center;
+    margin:0 auto;
+    border-radius: 15px;
+    transition: all 700ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    line-height: 50px;
+    letter-spacing: 1.5px;
 }
 
 .del-btn{
@@ -267,12 +480,7 @@ a span{
     border-radius: 6px;
     font-size: 16px;
     font-weight: 600;
-
-}
-
-.edit:hover,.del-btn:hover{
-    background-color: #283618;
-    color: white;
+    border:1px solid white;
 }
 
 .edit{
@@ -288,7 +496,15 @@ a span{
     font-weight: 600;
     text-align: center;
     line-height: 42px;
+    border: 1px solid white;
 }
+
+.edit:hover,.del-btn:hover{
+    background-color: #283618;
+    color: white;
+}
+
+
 
 
 

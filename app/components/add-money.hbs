@@ -3,7 +3,7 @@
     <div class="add-div-1">
         <h2>Add Amount</h2>
         <h3>Available Amount: &#8377;<span class="add-div-1-s">{{this.money}}.00</span></h3>
-        <form {{on "submit" this.addAmount}}>
+        <form {{on "submit" this.addAmount}} {{on-key "Enter"}}>
             <input type="number" placeholder="Enter Amount" value={{this.adding}} {{on "input" this.updateAmount}} class="add-div-1-input" required/>
             <button type="submit" class="submit">Add Amount</button>
         </form>

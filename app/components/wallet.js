@@ -36,7 +36,6 @@ export default class WalletSub extends Component{
     addMoney(){
         this.setToLocal();
         this.router.transitionTo('wallet-money');
-        this.flashMessages.success("Success! Amount added to your Wallet")
     }
 
     @action
@@ -47,6 +46,9 @@ export default class WalletSub extends Component{
 
     @action
     delete(sub){
+        let m=parseInt(sub.amount);
+        this.money=parseInt(this.money)+m;
+        this.setToLocal();
         this.subs=this.subs.filter(s=>s!=sub);
         localStorage.setItem('subs',JSON.stringify(this.subs))
     }
