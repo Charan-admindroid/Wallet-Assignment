@@ -10,6 +10,18 @@ export default class WalletSub extends Component{
     @tracked subs=[];
     @tracked isSub=false;
     @service flashMessages;
+    @tracked count=1;
+    @tracked transaction=[];
+    @tracked newTransaction={
+        id:this.count,
+        status:true,
+        name:"",
+        amount:"",
+        date:"",
+        category:"",
+        method:"",
+        curBal:""
+    }
 
     setToLocal(){
         localStorage.setItem("money",this.money);
@@ -18,6 +30,9 @@ export default class WalletSub extends Component{
     constructor(){
         super(...arguments);
         let amount=localStorage.getItem("money");
+        let count=localStorage.getItem('count');
+        let trans=localStorage.getItem('transaction');
+        this.transaction=JSON.parse(trans);
         if(amount){
             this.money=amount;
         }else{
@@ -30,6 +45,17 @@ export default class WalletSub extends Component{
         }else{
             this.subs=[];
         }
+        if(count){
+            count=JSON.parse(count);
+        }else{
+            count=1;
+        }
+        this.count=count;
+    }
+
+    @action
+    transactions(){
+        this.router.transitionTo('transactions');
     }
 
     @action
@@ -41,6 +67,8 @@ export default class WalletSub extends Component{
     @action
     addSubs(){
         localStorage.setItem("subs",JSON.stringify(this.subs));
+        localStorage.setItem('count',JSON.stringify(this.count));
+        localStorage.setItem('transaction',JSON.stringify(this.transaction))
         this.router.transitionTo('subs-add')
     }
 
@@ -49,8 +77,31 @@ export default class WalletSub extends Component{
         let m=parseInt(sub.amount);
         this.money=parseInt(this.money)+m;
         this.setToLocal();
+
+
+        let date=new Date();
+        let year=date.getFullYear();
+        let month=date.getMonth();
+        let day=date.getDay();
+        let tot=`${year}/${month}/${day}`
+        this.newTransaction={
+            id:this.count,
+            status:true,
+            name:sub.name,
+            amount:sub.amount,
+            date:tot,
+            category:sub.category.name,
+            method:sub.payment,
+            curBal:this.money
+        }
+
+        this.transaction=[
+            ...this.transaction,
+            {...this.newTransaction}
+        ]
         this.subs=this.subs.filter(s=>s!=sub);
-        localStorage.setItem('subs',JSON.stringify(this.subs))
+        localStorage.setItem('subs',JSON.stringify(this.subs));
+        localStorage.setItem('transaction',JSON.stringify(this.transaction));
     }
 
     @action

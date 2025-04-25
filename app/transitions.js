@@ -19,4 +19,10 @@ export default function () {
         this.use('crossFade'),
         this.reverse('crossFade')
     )
+    this.transition(
+      this.fromRoute('index'),
+      this.toRoute('transactions'),
+      this.use('toLeft'),
+      this.reverse('toRight')
+    )
   }

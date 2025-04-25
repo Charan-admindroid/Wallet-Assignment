@@ -11,4 +11,5 @@ Router.map(function () {
   this.route('subs-add');
   this.route('subs-edit', { path: '/subs/:id/edit' });
   this.route('subscriptions', function () {});
+  this.route('transactions');
 });

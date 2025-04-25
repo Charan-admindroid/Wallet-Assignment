@@ -8,7 +8,7 @@ export default class AddMoneyWallet extends Component{
     @tracked money="";
     @tracked adding="";
     @service router;
-
+    @service flashMessages;
     constructor(){
         super(...arguments);
         let amount=localStorage.getItem("money");
@@ -30,6 +30,14 @@ export default class AddMoneyWallet extends Component{
     addAmount(){
         this.money=parseInt(this.money)+parseInt(this.adding);
         localStorage.setItem("money",this.money);
+        this.flashMessages.add({
+            message:'Add Money into your wallet',
+            type: 'alert',
+            timeout: 1000,
+            priority: 200,
+            sticky: true,
+            showProgress: true,
+        })
         this.router.transitionTo('index');
     }
 

@@ -9,8 +9,10 @@ export default class SubsAddComponent extends Component{
     @service router;
     @tracked money=0;
     @service flashMessages;
+    @tracked transaction;
+    @tracked id=0;
     @tracked newSub={
-        id:this.subs.length+1,
+        id:this.count,
         name:"",
         plan:"Standard",
         billing:"Weekly",
@@ -18,9 +20,22 @@ export default class SubsAddComponent extends Component{
         category:"Music",
         payment:"UPI"
     }
+
+    @tracked newTransaction={
+        id:this.count,
+        status:true,
+        name:"",
+        amount:"",
+        date:"",
+        category:"",
+        method:"",
+        curBal:""
+    }
+
+    @tracked count=1;
     @tracked plans=["Standard","Pro","Pro+"];
     @tracked billing=["Weekly","Monthly","Yearly"];
-    @tracked category=["Entertainment","Music","Gaming","News/Magazine","Videos","E-Book and Audiobook","E-Commerce","AI"]
+    @tracked category=["Entertainment","Music","Gaming","News/Magazine","Videos","E-Book and Audiobook","E-Commerce","AI","Online Course","Food App"]
     @tracked categories=[
         {name:"Entertainment",link:"https://img.icons8.com/?size=100&id=2772&format=png&color=000000"},
         {name:"Music",link:"https://img.icons8.com/?size=100&id=Bri4HBrgCsPa&format=png&color=000000"},
@@ -29,7 +44,9 @@ export default class SubsAddComponent extends Component{
         {name:"Videos",link:"https://img.icons8.com/?size=100&id=9a46bTk3awwI&format=png&color=000000"},
         {name:"E-Book and Audiobook",link:"https://img.icons8.com/?size=100&id=QPAhSuUaALnL&format=png&color=000000"},
         {name:"E-Commerce",link:"https://img.icons8.com/?size=100&id=3tL355qYoTqf&format=png&color=000000"},
-        {name:"AI",link:"https://img.icons8.com/?size=100&id=eoxMN35Z6JKg&format=png&color=000000"}
+        {name:"AI",link:"https://img.icons8.com/?size=100&id=eoxMN35Z6JKg&format=png&color=000000"},
+        {name:"Online Course",link:"https://img.icons8.com/?size=100&id=8S2yTT52Xkf7&format=png&color=000000"},
+        {name:"Food App",link:"https://img.icons8.com/?size=100&id=54389&format=png&color=000000"}
     ];
     @tracked payment=["UPI", "Debit Card", "Net Banking", "Wallet"];
     
@@ -37,6 +54,10 @@ export default class SubsAddComponent extends Component{
         super(...arguments);
         let sub=localStorage.getItem("subs");
         let m=localStorage.getItem('money');
+        let count=localStorage.getItem('count');
+        let trans=localStorage.getItem('transaction');
+        this.transaction=JSON.parse(trans)||[];
+        console.log(this.transaction);
         if(sub){
             sub=JSON.parse(sub);
         }else{
@@ -47,8 +68,14 @@ export default class SubsAddComponent extends Component{
         }else{
             m=0;
         }
+        if(count){
+            count=JSON.parse(count);
+        }else{
+            count=1;
+        }
         this.subs=sub;
         this.money=parseInt(m);
+        this.count=parseInt(count);
     }
 
     @action
@@ -101,7 +128,7 @@ export default class SubsAddComponent extends Component{
         if(method==="Wallet"&&this.money>=m){
             this.money=this.money-m;
             localStorage.setItem('money',JSON.stringify(this.money));
-        }else{
+        }else if(method==="Wallet"&&this.money<m){
             console.log("Add Money into your wallet");
             this.flashMessages.add({
                 message:'Add Money into your wallet',
@@ -117,12 +144,38 @@ export default class SubsAddComponent extends Component{
             ...this.newSub,
             category:cat
         }
-        this.subs=[
-            ...this.subs,
-            {...this.newSub}
+        let name=this.subs.find((s)=>s.name===this.newSub.name);
+        if(name){
+            this.subs=this.subs.map((s)=>s.name===this.newSub.name?this.newSub:s)
+        }else{
+            this.subs=[
+                ...this.subs,
+                {...this.newSub}
+            ]
+        }
+        let date=new Date();
+        let year=date.getFullYear();
+        let month=date.getMonth();
+        let day=date.getDay();
+        let tot=`${year}/${month}/${day}`
+        this.newTransaction={
+            id:this.count,
+            status:false,
+            name:this.newSub.name,
+            amount:this.newSub.amount,
+            date:tot,
+            category:this.newSub.category.name,
+            method:this.newSub.payment,
+            curBal:this.money
+        }
+
+        this.transaction=[
+            ...this.transaction,
+            {...this.newTransaction}
         ]
+
         this.newSub={
-            id:this.subs.length+1,
+            id:this.id,
             name:"",
             plan:"Standard",
             billing:"Weekly",
@@ -131,7 +184,10 @@ export default class SubsAddComponent extends Component{
             payment:"UPI"
         }
         localStorage.setItem("subs",JSON.stringify(this.subs));
+        localStorage.setItem('transaction',JSON.stringify(this.transaction));
         this.router.transitionTo("index");
+        this.count++;
+        localStorage.setItem('count',JSON.stringify(this.count));
         console.log(this.subs);
         console.log(this.newSub);
     }

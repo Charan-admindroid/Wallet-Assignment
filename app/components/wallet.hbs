@@ -26,7 +26,7 @@
                             <img src="https://img.icons8.com/?size=100&id=78291&format=png&color=000000"/>
                             <a>More</a>
                         </div>
-                        <button class="card-new"><span class="btn-s">+</span>Add new Card</button>
+                        <button class="card-new" type="button"><span class="btn-s">+</span>Add new Card</button>
                     </div>
                 {{!-- <button class="wallet-b" type="button" {{on "click" this.addMoney}}>Add Money</button> --}}
             </div>
@@ -35,7 +35,10 @@
 
         </div>
         <div class="subs-container">
-            <button class="subs-b" type="button" {{on "click" this.addSubs}}>Add Subscription</button>
+            <div class="subs-btns">   
+                <button class="subs-b" type="button" {{on "click" this.addSubs}}>Add Subscription</button>
+                <button class="subs-b" type="button" {{on 'click' this.transactions}}>All Transactions</button>
+            </div>
             {{#if this.isSub}}
                 <a class="subs-heading">Subscriptions</a>
             {{/if}}
@@ -47,10 +50,10 @@
                             <span class="sub-name">{{sub.name}}</span>
                             <div class="card-a">
                                 <a>Total Amount: <span>&#8377;{{sub.amount}}.00</span></a>
-                                <a>Billing: <span>{{sub.billing}}</span></a>
-                                <a>Plan: <span>{{sub.plan}}</span></a>
-                                <a>Payment Method: <span>{{sub.payment}}</span></a>
                                 <a>Category: <span>{{sub.category.name}}</span></a>
+                                <a>Plan: <span>{{sub.plan}}</span></a>
+                                <a>Billing: <span>{{sub.billing}}</span></a>
+                                <a>Payment Method: <span>{{sub.payment}}</span></a>
                             </div>
                             <div class="card-btns">
                                 <LinkTo @route="subs-edit" @model={{sub.id}} class="edit">Edit</LinkTo>

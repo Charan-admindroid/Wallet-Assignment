@@ -1,0 +1,54 @@
+<div class="t-container">
+    <button class="t-button" type="button" {{on "click" this.back}}>Back</button>
+    <div class="t-table-div">
+        <div class="t-header">
+            <a class="t-h">Transactions History</a>
+            <a class="t-filter">
+                <span class="f-span-2">Filter</span>
+            </a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Method</th>
+                    <th>Current Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <VerticalCollection
+                    @items={{this.transactionData}}
+                    @estimateHeight={{74}}
+                    @containerSelector='.t-table-div'
+                    @staticHeight={{false}}
+                    @bufferSize={{4}}
+                    @renderAll={{false}}
+                    @firstReached={{perform this.firstReached}}
+                    @lastReached={{perform this.lastReached}}
+                    as |trans index|>
+                    <tr>
+                        <td>{{add index 1}}</td>
+                        <td><span class="t-name">{{trans.name}}</span></td>
+                        {{#if trans.status}}
+                            <td class="profit">+&#8377;{{trans.amount}}.00</td>
+                        {{else}}
+                            <td class="loss">-&#8377;{{trans.amount}}.00</td>
+                        {{/if}}
+                        <td>{{trans.date}}</td>
+                        {{#if (rem trans.id 2)}}
+                            <td><span class="t-green">{{trans.category}}</span></td>
+                        {{else}}
+                            <td><span class="t-orange">{{trans.category}}</span></td>
+                        {{/if}}
+                        <td>{{trans.method}}</td>
+                        <td><span class="cur-bal">&#8377;{{trans.curBal}}.00</span></td>
+                    </tr>
+                </VerticalCollection>
+            </tbody>
+        </table>
+    </div>
+</div>

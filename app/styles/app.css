@@ -5,13 +5,20 @@ body{
     margin:0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #023256;
+
     /* background-image: url('https://img.freepik.com/free-vector/bank-card-coin-withdrawal-money-money-payment-symbol-vector-illustration_587448-912.jpg?semt=ais_hybrid&w=740');
     background-repeat: no-repeat;
     background-attachment: fixed; */
+
     /* background-size: 100% 100%; */
+
     /* background-size: cover; */
 }
 
+body::selection{
+    background-color: black;
+    color: yellow;
+}
 
 .wallet-subs{
     padding:20px;
@@ -25,13 +32,14 @@ body{
 }
 
 .heading{
-    color: rgb(228, 222, 222);
+    color: rgb(228 222 222);
 }
 
 
 
 .wallet{
     /* width:21rem; */
+
     /* border: 1px solid black; */
     padding: 20px;
     border-radius: 10px;
@@ -83,12 +91,12 @@ body{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 0 2px 6px rgb(27, 19, 19);
+    box-shadow: 0 2px 6px rgb(27 19 19);
     transition: box-shadow 0.5s;
 }
 
 .wallet-div:hover{
-    box-shadow: 0 4px 10px rgb(27, 19, 19);;
+    box-shadow: 0 4px 10px rgb(27 19 19);;
 }
 
 .bal-h{
@@ -181,9 +189,10 @@ body{
     width:32rem;
     height:16rem;
     padding:20px;
+
     /* border: 1px solid black; */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.555);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 55.5%);
     margin-bottom: 10px;
     transition: box-shadow 0.5s;
     cursor: pointer;
@@ -255,13 +264,13 @@ body{
 .line{
     margin: 40px 0 20px 20px;
     width:90%;
-    background-color: rgb(179, 176, 176);
+    background-color: rgb(179 176 176);
     height:0.1px ;
 }
 
 .subs-b{
     padding: 10px;
-    background-color:rgb(55, 144, 179);
+    background-color:rgb(55 144 179);
     border-radius: 8px;
     color: white;
     border: 0.5px solid white;
@@ -275,7 +284,7 @@ body{
 .subs-heading{
     color: white;
     font-size: 45px;
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0;
     display: block;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -347,9 +356,9 @@ body{
 
 .sub-card{
     width:19rem;
-    height:27rem;
+    height:auto;
     max-width: 22rem;
-    max-height: 30rem;
+    max-height: 32rem;
     box-shadow: 0 2px 6px rgb(0 0 0 / 30.1%);
     padding:10px;
     cursor: pointer;
@@ -380,6 +389,7 @@ body{
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 /* a span{
     font-size: 19px;
@@ -414,7 +424,7 @@ body{
 a span{
     font-size:20px;
     font-weight:700 ;
-    color: rgb(255, 191, 0);
+    color: rgb(255 191 0);
 }
 
 .bill{
@@ -435,6 +445,159 @@ a span{
     text-align: center;
 }
 
+.subs-btns{
+    display: flex;
+    gap:30px;
+}
+
+.subs-b:hover{
+    background-color: #023256;
+}
+
+.t-header{
+    display: flex;
+    justify-content: space-between;
+    margin:20px 200px 30px 60px;
+}
+
+.t-filter{
+    background-color: black;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.f-span-2{
+    color: white;
+    font-size:25px;
+    font-weight: 650;
+    letter-spacing: 1px;
+}
+
+.t-button{
+    position: absolute;
+    left: 200px;
+    top:30px;
+    background-color: black;
+    color: white;
+    width:100px;
+    height: 50px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: 1px;
+    z-index:999;
+    cursor: pointer;
+}
+
+.t-h{
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.t-container{
+    height: 100dvh;
+    width: 100dvw;
+    background-color: #2e67d7;
+}
+
+.t-table-div{
+    width:90%;
+    background-color: white;
+    height: 85%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,10%);
+    border-radius: 30px;
+    padding:20px 0;
+    box-shadow: 0 4px 8px black;
+    overflow: auto;
+}
+
+
+
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+td,th{
+    text-align: center;
+
+    /* border: 0.5px solid rgba(184, 181, 181, 0.47); */
+    color: black;
+}
+
+td{
+    padding:15px
+}
+
+tr{
+    border-bottom: 0.5px solid rgb(182 181 181 / 76.9%);
+    cursor: pointer;
+}
+
+tr:hover{
+    background-color:whitesmoke;
+}
+
+th{
+    padding-top: 12px;
+    padding-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+td{
+    font-size: 21px;
+    font-weight: 650;
+    color: rgb(90 88 88);
+    padding: 20px;
+}
+
+.profit{
+    color: rgb(20 196 20);
+}
+
+.loss{
+    color: rgb(245 94 94);
+}
+
+.t-green{
+    width: auto;
+    padding: 2px 20px;
+    background-color: rgb(156 245 156 / 82.9%);
+    border-radius:25px;
+    color: rgb(29 164 29);
+    font-size: 22px;
+    font-weight: 680;
+}
+
+.cur-bal{
+    font-size: 21px;
+    font-weight: 800;
+    color: black;
+    letter-spacing: 1.3px;
+}
+
+.t-orange{
+    width: auto;
+    padding: 2px 20px;
+    background-color: rgb(247 201 137 / 73.5%);
+    border-radius:25px;
+    color: rgb(159 117 58);
+}
+
+
+.t-name{
+    font-size: 21px;
+    font-weight: 800;
+    color: black;
+    letter-spacing: 1px;
+}
+
 .category{
     height: 25px;
     width:130px;
@@ -451,12 +614,14 @@ a span{
     align-items: center;
     margin-top:20px;
     margin-left: 15px;
+    margin-bottom: 10px;
 }
 
 
 .flash-message{
     color: black;
-    background-color: rgb(253, 199, 3);
+    background-color: rgb(255 191 0);
+
     /* z-index:999; */
     height:50px;
     width:80%;
@@ -472,7 +637,7 @@ a span{
 
 .del-btn{
     letter-spacing: 1px;
-    background-color:#606C38;;
+    background-color:#023256;
     color: white;
     width:82px;
     height: 42px;
@@ -486,21 +651,21 @@ a span{
 .edit{
     text-decoration: none;
     letter-spacing: 1px;
-    background-color:#606C38;;
+    background-color:#023256;
     color: white;
     width:82px;
-    height: 42px;
+    height: 39px;
     cursor: pointer;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 600;
     text-align: center;
-    line-height: 42px;
+    line-height: 39px;
     border: 1px solid white;
 }
 
 .edit:hover,.del-btn:hover{
-    background-color: #283618;
+    background-color:#035f8d;
     color: white;
 }
 

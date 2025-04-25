@@ -14,7 +14,7 @@
                 @selected={{this.editSub.plan}}
                 @onChange={{this.updatePlan}}
                 @placeholder="Select Plan"
-                @aria-required="true"
+                required="true"
                 as |plan|
 
             >
@@ -29,7 +29,7 @@
                 @selected={{this.editSub.billing}}
                 @onChange={{this.updateBilling}}
                 @placeholder="Select Billing Cycle"
-                @aria-required="true"
+                required="true"
                 as |bill|
             >
                 {{bill}}
@@ -47,10 +47,11 @@
             </label>
             <PowerSelect
                 @options={{this.category}}
-                @selected={{this.editSub.category}}
+                @selected={{this.editSub.category.name}}
                 @onChange={{this.updateCategory}}
                 @placeholder="Select Category"
                 @required={{true}}
+                {{!-- @disabled={{true}} --}}
                 as |category|
             >
                 {{category}}
