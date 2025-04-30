@@ -1,0 +1,30 @@
+<div class="sidebar sidebar-display">
+            <div class="logo">
+                <div class="logo-div" {{on "click" (fn this.link "index")}}>
+                    <img class="logo-img" src="https://cdn-icons-png.flaticon.com/512/9181/9181081.png"/>
+                    <a>Eezy Cash</a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <a class="main-1">Main Menu</a>
+                <div class="main-btn">
+                    <div class="main-div {{if (eq this.router.currentRouteName "index") "active"}}" {{on "click" (fn this.link "index")}}>
+                        <img src="https://img.icons8.com/?size=100&id=86527&format=png&color=000000"/>
+                        <a class="main-a main-2">Home</a>
+                    </div>
+                    <div class="main-div {{if (eq this.router.currentRouteName "subs-add") "active"}}"  {{on "click" (fn this.link "subs-add")}}>
+                        <img src="https://img.icons8.com/?size=100&id=12608&format=png&color=000000"/>
+                        <a class="main-3 main-a">Add Subscription</a>
+                    </div>
+
+                    <div class="main-div {{if (eq this.router.currentRouteName "transactions") "active"}}" {{on "click" (fn this.link "transactions")}}>
+                        <img src="https://img.icons8.com/?size=100&id=15214&format=png&color=000000"/>
+                        <a class="main-a main-4">Transactions</a>
+                    </div>
+                    <div class="main-div {{if (eq this.router.currentRouteName "wallet-history") "active"}}" {{on "click" (fn this.link "wallet-history")}}>
+                        <img class="request" src="https://img.icons8.com/?size=100&id=58760&format=png&color=000000"/>
+                        <a class="main-5 main-a">Wallet History</a>
+                    </div>
+                </div>
+            </div>
+        </div>

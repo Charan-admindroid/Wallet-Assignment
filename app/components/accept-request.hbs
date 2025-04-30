@@ -1,0 +1,67 @@
+<div class="t-container">
+    <Sidebar/>
+    <div class="t-table-div main-content">
+        <div class="t-header">
+            <a class="t-h">Subscription Requests</a>
+            <div class="a-btns">
+                <div class="t-filter ar-a">
+                    <span class="f-span-2" {{on "click" this.acceptAll}}>Accept All</span>
+                </div>
+                <div class="a-index-div" {{on "click" this.index}}>
+                    <a class="a-index-btn">Back</a>
+                </div>
+            </div>
+            
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Billing</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <VerticalCollection
+                    @items={{this.paymentRequests}}
+                    @estimateHeight={{74}}
+                    @containerSelector='.t-table-div'
+                    @staticHeight={{false}}
+                    @bufferSize={{4}}
+                    @renderAll={{false}}
+                    @firstReached={{perform this.firstReached}}
+                    @lastReached={{perform this.lastReached}}
+                    as |request index|>
+                    <tr>
+                        <td>{{add index 1}}</td>
+                        <td><span class="t-name">{{request.name}}</span></td>
+                        <td>{{request.date}}</td>
+                        {{#if (rem request.id 2)}}
+                            <td><span class="t-green">{{request.category}}</span></td>
+                        {{else}}
+                            <td><span class="t-orange">{{request.category}}</span></td>
+                        {{/if}}
+                        <td>{{request.billing}}</td>
+                        <td class="req-amt">&#8377;{{request.amount}}.00</td>
+                        <td>
+                            <div class="s-btns">
+                                {{#if (eq request.status "Pending")}}
+                                    <button class="accept" type="button" {{on "click" (fn this.accept request)}}>Accept</button>
+                                    <button class="reject" type="button" {{on "click" (fn this.reject request)}}>Reject</button>
+                                {{else if (eq request.status "Rejected")}}
+                                    <a class="rejected">Rejected</a>
+                                {{else}}
+                                    <a class="confirmed">Confirmed</a>
+                                {{/if}}
+                            </div>
+                        </td>
+                    </tr>
+                </VerticalCollection>
+            </tbody>
+        </table>
+    </div>
+</div>

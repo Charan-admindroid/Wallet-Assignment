@@ -3,14 +3,14 @@ export default function () {
     this.transition(
       this.fromRoute('index'),
       this.toRoute('subs-add'),
-      this.use('toLeft'),
-      this.reverse('toRight'),
+      this.use('crossFade'),
+      this.reverse('crossFade'),
     );
     this.transition(
       this.fromRoute('index'),
       this.toRoute('subs-edit'),
-      this.use('toUp'),
-      this.reverse('toDown'),
+      this.use('crossFade'),
+      this.reverse('crossFade'),
     );
 
     this.transition(
@@ -22,7 +22,14 @@ export default function () {
     this.transition(
       this.fromRoute('index'),
       this.toRoute('transactions'),
-      this.use('toLeft'),
-      this.reverse('toRight')
+      this.use('crossFade'),
+      this.reverse('crossFade')
+    ),
+
+    this.transition(
+      this.fromRoute('index'),
+      this.toRoute('send'),
+      this.use('crossFade'),
+      this.reverse('crossFade')
     )
   }

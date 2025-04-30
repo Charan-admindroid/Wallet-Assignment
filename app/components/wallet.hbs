@@ -1,66 +1,83 @@
 <body>
     <div class="wallet-subs">
-        {{#each this.flashMessages.queue as |flash|}}
+        <Sidebar/>
+        <div class="main-content">
+            {{#each this.flashMessages.queue as |flash|}}
             <FlashMessage @flash={{flash}} class="round" @messageStyle="foundation"/>
-        {{/each}}
-        <h1 class="heading">Digital Wallet & Subscriptions Tracker</h1>
-        <div class="wallet">
-            <div class="wallet-div">
-                    {{!-- Wallet Amount: <span class="wallet-s">&#8377;{{this.money}}.00</span> --}}
-                    <a class="bal-h">Total Balance</a>
-                    <a class="bal">&#8377;{{this.money}}.00</a>
-                    <div class="wallet-btn-div">
-                        <div class="wallet-btn" {{on "click" this.addMoney}}>
-                            <img src="https://img.icons8.com/?size=100&id=209&format=png&color=000000"/>
-                            <a>Add</a>
+            {{/each}}
+            <h1 class="heading">Digital Wallet & Subscriptions Tracker</h1>
+            {{!-- <div class="menu-button" {{on "click" this.showSidebar}}>
+                <img src="https://img.icons8.com/?size=100&id=Rdp3AydLFY2A&format=png&color=000000" alt="Menu"/>
+                <div class="menu-select-div {{if this.isShowSidebar "show-sidebar"}}">
+                    <a {{on "click" (fn this.link "index")}}>Home</a>
+                    <a {{on "click" (fn this.link "subs-add")}}>Add Subscription</a>
+                    <a {{on "click" (fn this.link "transactions")}}>Transaction History</a>
+                    <a {{on 'click' (fn this.link "wallet-history")}}>Wallet History</a>
+                </div>
+            </div> --}}
+            <div class="wallet">
+                <div class="wallet-div">
+                        {{!-- Wallet Amount: <span class="wallet-s">&#8377;{{this.money}}.00</span> --}}
+                        <a class="bal-h">Total Balance</a>
+                        <a class="bal">&#8377;{{this.money}}.00</a>
+                        <div class="wallet-btn-div">
+                            <div class="wallet-btn" {{on "click" this.addMoney}}>
+                                <img src="https://img.icons8.com/?size=100&id=209&format=png&color=000000"/>
+                                <a>Add</a>
+                            </div>
+                            <div class="notification">
+                                <div class="length">
+                                    <a>{{this.length}}</a>
+                                </div>
+                                <div class="wallet-btn" {{on "click" this.send}}>
+                                    <img src="https://img.icons8.com/?size=100&id=35071&format=png&color=000000"/>
+                                    <a>Send</a>
+                                </div>
+                            </div>
+                            <div class="wallet-btn" {{on 'click' this.transactions}}>
+                                <img class="request" src="https://img.icons8.com/?size=100&id=35946&format=png&color=000000"/>
+                                <a>History</a>
+                            </div>
+                            <div class="wallet-btn">
+                                <img src="https://img.icons8.com/?size=100&id=78291&format=png&color=000000"/>
+                                <a>More</a>
+                            </div>
+                            <button class="card-new" type="button"><span class="btn-s">+</span>Add new Card</button>
                         </div>
-                        <div class="wallet-btn">
-                            <img src="https://img.icons8.com/?size=100&id=35071&format=png&color=000000"/>
-                            <a>Send</a>
-                        </div>
-                        <div class="wallet-btn">
-                            <img class="request" src="https://img.icons8.com/?size=100&id=35071&format=png&color=000000"/>
-                            <a>Request</a>
-                        </div>
-                        <div class="wallet-btn">
-                            <img src="https://img.icons8.com/?size=100&id=78291&format=png&color=000000"/>
-                            <a>More</a>
-                        </div>
-                        <button class="card-new" type="button"><span class="btn-s">+</span>Add new Card</button>
-                    </div>
-                {{!-- <button class="wallet-b" type="button" {{on "click" this.addMoney}}>Add Money</button> --}}
+                </div>
             </div>
-        </div>
-        <div class="line">
+            <div class="i-line">
 
-        </div>
-        <div class="subs-container">
-            <div class="subs-btns">   
-                <button class="subs-b" type="button" {{on "click" this.addSubs}}>Add Subscription</button>
-                <button class="subs-b" type="button" {{on 'click' this.transactions}}>All Transactions</button>
             </div>
-            {{#if this.isSub}}
-                <a class="subs-heading">Subscriptions</a>
-            {{/if}}
-            <div class="subs-div">
+            <div class="subs-container">
                 {{#if this.isSub}}
-                    {{#each this.subs as |sub|}}
-                        <div class="sub-card">
-                            <img src="{{sub.category.link}}" alt="category" class="category-img"/>
-                            <span class="sub-name">{{sub.name}}</span>
-                            <div class="card-a">
-                                <a>Total Amount: <span>&#8377;{{sub.amount}}.00</span></a>
-                                <a>Category: <span>{{sub.category.name}}</span></a>
-                                <a>Plan: <span>{{sub.plan}}</span></a>
-                                <a>Billing: <span>{{sub.billing}}</span></a>
-                                <a>Payment Method: <span>{{sub.payment}}</span></a>
-                            </div>
-                            <div class="card-btns">
-                                <LinkTo @route="subs-edit" @model={{sub.id}} class="edit">Edit</LinkTo>
-                                <button class="del-btn" type="button" {{on "click" (fn this.delete sub)}}>Cancel</button>
-                            </div>
-                        </div>
-                    {{/each}}
+                    <a class="subs-heading">Subscriptions</a>
+                    <div class="subs-div">
+                        {{#each this.subs as |sub|}}
+                            {{#if (not-eq sub.status "Rejected")}}
+                                <div class="sub-card">
+                                    <img src="{{sub.category.link}}" alt="category" class="category-img"/>
+                                    <span class="sub-name">{{sub.name}}</span>
+                                    <div class="card-a">
+                                        <a>Total Amount: <span>&#8377;{{sub.amount}}.00</span></a>
+                                        <a>Category: <span>{{sub.category.name}}</span></a>
+                                        <a>Plan: <span>{{sub.plan}}</span></a>
+                                        <a>Billing: <span>{{sub.billing}}</span></a>
+                                        <a>Payment Method: <span>{{sub.payment}}</span></a>
+                                        <a>Payment: <span>{{sub.status}}</span></a>
+                                    </div>
+                                    <div class="card-btns">
+                                        {{#if (eq sub.status "Success")}}
+                                            <LinkTo @route="subs-edit" @model={{sub.id}} class="edit">Upgrade</LinkTo>
+                                            <button class="del-btn" type="button" {{on "click" (fn this.delete sub)}}>Cancel</button>
+                                        {{else}}
+                                            <button class="del-btn" type="button" {{on "click" (fn this.delete sub)}}>Cancel</button>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
                 {{/if}}
             </div>
         </div>

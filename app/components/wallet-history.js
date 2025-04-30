@@ -1,36 +1,51 @@
 /* eslint-disable prettier/prettier */
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import {action} from "@ember/object";
 import {inject as service} from "@ember/service";
-import { task,timeout } from 'ember-concurrency';
+import {action} from "@ember/object";
+import { tracked } from '@glimmer/tracking';
+import { task,timeout } from "ember-concurrency";
 
-export default class TransactionsComponent extends Component{
+export default class WalletHistoryComponent extends Component{
     @tracked transaction;
+    @tracked isShow=false;
+    @service router;
+    @tracked status;
     @tracked hasMore=true;
     @tracked currentPage=1;
     @tracked perPage=12;
     @tracked isLoading=false;
-    @service router;
 
-    get transactionData(){
-        return this.transaction.slice(0,this.currentPage*this.perPage)
-    }
-    
     constructor(){
         super(...arguments);
-        let trans=localStorage.getItem('transaction');
-        this.transaction=JSON.parse(trans)||[];
-        console.log(this.transaction)
+        let t=localStorage.getItem('transaction');
+        this.transaction=JSON.parse(t)||[];
         this.loadInitial();
     }
+
+
+    get walletHistory(){
+        console.log(this.transaction.filter((t)=>t.method==='Wallet'));
+        let tr=this.transaction.filter((t)=>t.method==='Wallet');
+        if(this.status==='Debit'){
+            console.log(this.status);
+            return tr.filter((t)=>t.status===false).slice(0,this.currentPage*this.perPage);
+        }else if(this.status==='Refund'){
+            console.log(this.status);
+            return tr.filter((t)=>t.status===true).slice(0,this.currentPage*this.perPage);;
+        }else if(this.status==='Credit'){
+            return tr.filter((t)=>t.category==="Wallet").slice(0,this.currentPage*this.perPage);;
+        }else{
+            return tr.slice(0,this.currentPage*this.perPage);;
+        }
+    }
+
     
     @action
     loadInitial(){
         this.hasMore=this.transaction.length>this.perPage;
         this.isLoading=false;
     }
-    
+
     @task
     *firstReached(){
         console.log("first reached Before");
@@ -45,7 +60,7 @@ export default class TransactionsComponent extends Component{
         console.log("First Reached After");
     }
 
-    
+
     @task
     *lastReached(){
         console.log("Last Reached Before");
@@ -60,16 +75,24 @@ export default class TransactionsComponent extends Component{
         console.log("Last Reached After");
     }
 
+    @action
+    toggle(){
+        this.isShow=!this.isShow;
+    }
 
     @action
-    back(){
-        this.router.transitionTo("index");
+    close(){
+        console.log("Out Side");
+        this.isShow=false;
+    }
+
+    @action
+    select(attr){
+        this.status=attr;
     }
 
     @action
     index(){
         this.router.transitionTo('index');
     }
-
-
 }

@@ -2,9 +2,21 @@
     <Sidebar/>
     <div class="t-table-div main-content">
         <div class="t-header">
-            <a class="t-h">Transactions History</a>
-            <div class="t-index-div" {{on "click" this.index}}>
-                <a class="t-index-btn">Back</a>
+            <a class="t-h">Wallet History</a>
+            <div class="w-index-filter">
+                <div class="t-filter" {{on "click" this.toggle}}>
+                    <span class="f-span-2">Filter</span>
+                    <div class="wallet-dropdown {{if this.isShow "display"}}">
+                        <a {{on "click" (fn this.select "All")}}>All</a>
+                        <a {{on "click" (fn this.select "Debit")}}>Debit</a>
+                        <a {{on "click" (fn this.select "Credit")}}>Credit</a>
+                        <a {{on "click" (fn this.select "Refund")}}>Refund</a>
+                    </div>
+                </div>
+                <div class="w-index-btn-div" {{on "click" this.index}}>
+                    <a class="w-index-back-btn">Back</a>
+                </div>
+                
             </div>
         </div>
         <table class="table">
@@ -15,13 +27,12 @@
                     <th>Amount</th>
                     <th>Date</th>
                     <th>Category</th>
-                    <th>Method</th>
                     <th>Current Balance</th>
                 </tr>
             </thead>
             <tbody>
                 <VerticalCollection
-                    @items={{this.transactionData}}
+                    @items={{this.walletHistory}}
                     @estimateHeight={{74}}
                     @containerSelector='.t-table-div'
                     @staticHeight={{false}}
@@ -44,7 +55,6 @@
                         {{else}}
                             <td><span class="t-orange">{{trans.category}}</span></td>
                         {{/if}}
-                        <td>{{trans.method}}</td>
                         <td><span class="cur-bal">&#8377;{{trans.curBal}}.00</span></td>
                     </tr>
                 </VerticalCollection>
